@@ -23,3 +23,5 @@ $statement->execute([
     ":capaciteit" => $capaciteit,
     ":melder" => $melder
 ]);
+
+?>
