@@ -2,6 +2,7 @@
 
 //Variabelen vullen
 $attractie = $_POST['attractie'];
+$type = $_POST['type'];
 $capaciteit = $_POST['capaciteit']; 
 $melder = $_POST['melder'];
 
@@ -9,8 +10,8 @@ $melder = $_POST['melder'];
 require_once 'conn.php';
 
 //2. Query
-$query = "INSERT INTO meldingen (attractie, capaciteit, melder)
-VALUES(:attractie, :capaciteit, :melder)";
+$query = "INSERT INTO meldingen (attractie, type, capaciteit, melder)
+VALUES(:attractie, :type, :capaciteit, :melder)";
 
 //3. Prepare
 $statement = $conn->prepare($query);
@@ -18,8 +19,9 @@ $statement = $conn->prepare($query);
 //4. Execute
 $statement->execute([
     ":attractie" => $attractie,
+    ":type" => $type,
     ":capaciteit" => $capaciteit,
-    ":melder" => $melder
+    ":melder" => $melder,
 ]);
 
 header("Location: ../meldingen/index.php?msg=Meldingen opgeslagen");
